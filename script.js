@@ -1,9 +1,9 @@
-// Configuración centralizada de contacto (reemplazá whatsappNumber por el número exacto de Leo Luter)
+// Configuración centralizada de contacto (con el número real de Leo Luter: 3442-537081)
 const LL_CONFIG = {
-  whatsappNumber: "5493442000000", // Código de área 3442 (Concepción del Uruguay)
+  whatsappNumber: "5493442537081",
   instagramUrl: "https://www.instagram.com/ll__herreria",
   founderInstagram: "https://www.instagram.com/leo_luter",
-  city: "Concepción del Uruguay, Entre Ríos"
+  coverage: "Concepción del Uruguay, Entre Ríos · Trabajos y envíos a toda la Argentina"
 };
 
 function buildWhatsAppUrl(message) {
@@ -21,20 +21,20 @@ function trackLeadEvent(sourceLabel) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let selectedService = "Portones y Rejas de Seguridad";
+  let selectedService = "Estructuras y Trabajos para Empresas / Industria";
 
   // 1. Botones directos de WhatsApp
   document.querySelectorAll("[data-wa-direct]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const customTopic = btn.getAttribute("data-wa-direct") || "un trabajo de herrería a medida";
-      const msg = `¡Hola Leo (LL Herrería)! Vi su página web y quería pedir un presupuesto sin cargo por *${customTopic}* en Concepción del Uruguay.`;
+      const customTopic = btn.getAttribute("data-wa-direct") || "un proyecto industrial o a medida";
+      const msg = `¡Hola Leo (LL Herrería)! Vi su página web y quería pedir un presupuesto sin cargo por *${customTopic}*.`;
       trackLeadEvent(`Direct_${customTopic}`);
       window.open(buildWhatsAppUrl(msg), "_blank", "noopener");
     });
   });
 
-  // 2. Filtros interactivos del Portfolio de 12 fotos reales
+  // 2. Filtros interactivos del Portfolio
   const filterBtns = document.querySelectorAll(".filter-btn");
   const workCards = document.querySelectorAll(".work-card");
 
@@ -126,13 +126,13 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const clientType = document.getElementById("clientType").value;
-      const zone = document.getElementById("clientZone").value.trim() || "Concepción del Uruguay";
+      const zone = document.getElementById("clientZone").value.trim() || "Argentina";
       const details = document.getElementById("workDetails").value.trim();
 
       let message = `¡Hola Leo (*LL Herrería*)! Quiero pedir un presupuesto sin cargo:\n\n`;
       message += `• *Trabajo:* ${selectedService}\n`;
       message += `• *Destino:* ${clientType}\n`;
-      message += `• *Zona/Barrio:* ${zone}\n`;
+      message += `• *Ciudad / Provincia:* ${zone}\n`;
       if (details) {
         message += `• *Medidas / Detalles:* ${details}\n`;
       }
