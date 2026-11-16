@@ -1106,7 +1106,16 @@ textarea.form-control {
   transform: scale(1.04);
 }
 
-/* Responsive */
+/* Mobile Quick Nav (hidden on desktop) */
+.mobile-quick-nav {
+  display: none;
+}
+
+.mobile-swipe-hint {
+  display: none;
+}
+
+/* Responsive & Mobile-First Optimizations */
 @media (max-width: 960px) {
   .hero-grid,
   .about-grid,
@@ -1122,25 +1131,314 @@ textarea.form-control {
   .nav-links {
     display: none;
   }
+  .navbar {
+    padding: 10px 0 0;
+  }
+  .nav-inner {
+    padding-bottom: 10px;
+  }
+  .mobile-quick-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 16px;
+    background: rgba(17, 21, 27, 0.95);
+    border-top: 1px solid var(--border);
+  }
+  .mobile-quick-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .mobile-quick-nav a {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .mobile-quick-nav a:active,
+  .mobile-quick-nav a:hover {
+    color: #0b0d10;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .services-grid,
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Compact Top Bar on Mobile */
+  .top-bar {
+    font-size: 0.76rem;
+    padding: 6px 0;
+  }
+  .top-bar-inner {
+    justify-content: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  /* Compact Navbar on Mobile */
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .brand-name {
+    font-size: 1.05rem;
+  }
+  .brand-sub {
+    font-size: 0.68rem;
+  }
+  .nav-cta-btn {
+    padding: 9px 13px;
+    font-size: 0.82rem;
+    gap: 6px;
+  }
+
+  /* Hero Mobile UX */
+  .hero {
+    padding: 28px 0 44px;
+  }
+  .hero-grid {
+    gap: 28px;
+  }
+  .hero h1 {
+    font-size: 1.95rem;
+    line-height: 1.12;
+    margin-bottom: 14px;
+  }
+  .hero-lead {
+    font-size: 0.96rem;
+    margin-bottom: 20px;
+  }
+  .hero-bullets {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .hero-bullets li {
+    font-size: 0.9rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 0.96rem;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-top: 18px;
+  }
+  .stat-item strong {
+    font-size: 1.15rem;
+  }
+
+  /* Hero Showcase Mosaic on Mobile */
+  .hero-showcase {
+    padding: 12px;
+    border-radius: var(--radius-md);
+  }
+  .showcase-profile strong {
+    font-size: 0.84rem;
+  }
+  .showcase-profile span {
+    font-size: 0.7rem;
+  }
+  .showcase-mosaic {
+    gap: 8px;
+  }
+  .mosaic-card.wide {
+    aspect-ratio: 16 / 9.5;
+  }
+  .mosaic-label {
+    padding: 24px 8px 8px;
+    font-size: 0.73rem;
+  }
+  .mosaic-badge {
+    font-size: 0.62rem;
+    padding: 2px 5px;
+  }
+
+  /* Section Spacing on Mobile */
+  section,
+  .video-section {
+    padding: 52px 0;
+  }
+  .section-header {
+    margin-bottom: 26px;
+  }
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+  .section-header p {
+    font-size: 0.92rem;
+  }
+
+  /* Videos: Swipeable Reels Carousel on Mobile */
+  .mobile-swipe-hint {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .video-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    padding-bottom: 10px;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .video-grid::-webkit-scrollbar {
+    height: 4px;
+  }
+  .video-grid::-webkit-scrollbar-thumb {
+    background: rgba(245, 158, 11, 0.4);
+    border-radius: 4px;
+  }
+  .video-card {
+    flex: 0 0 82vw;
+    max-width: 310px;
+    scroll-snap-align: center;
+  }
+  .video-wrap {
+    aspect-ratio: 9 / 12;
+  }
+
+  /* Filter Tabs: Horizontal Touch Scroll on Mobile */
+  .filter-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -16px 24px;
+    padding: 0 16px 6px;
+    gap: 8px;
+  }
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 8px 15px;
+    font-size: 0.83rem;
+  }
+
+  /* Portfolio & Services Cards on Mobile */
   .portfolio-grid,
-  .video-grid,
-  .hero-bullets,
-  .chip-grid,
-  .form-row,
+  .services-grid,
   .credentials-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
+  .work-img-wrap {
+    height: 240px;
+  }
+  .work-body {
+    padding: 16px;
+  }
+  .service-card {
+    padding: 22px 18px;
+  }
+
+  /* About Badge on Mobile */
+  .about-badge-float {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  /* Quote Calculator Form on Mobile */
   .quote-box {
-    padding: 24px 18px;
+    padding: 22px 16px;
+    gap: 24px;
   }
-  .hero {
-    padding: 42px 0 56px;
+  .quote-info h2 {
+    font-size: 1.55rem;
+  }
+  .quote-form {
+    padding: 18px 14px;
+  }
+  .chip-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+  }
+  .chip-btn {
+    padding: 10px 9px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .form-control {
+    font-size: 16px; /* Evita auto-zoom en iPhone/iOS */
+    padding: 12px;
+  }
+
+  /* Lightbox Modal on Mobile */
+  .lightbox {
+    padding: 12px;
+  }
+  .lightbox-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--radius-md);
+  }
+  .lightbox-img-wrap {
+    max-height: 44vh;
+  }
+  .lightbox-img-wrap img {
+    max-height: 44vh;
+    object-fit: contain;
+  }
+  .lightbox-info {
+    padding: 18px 16px;
+  }
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Floating WhatsApp Button & Footer clearance on Mobile */
+  .floating-wa {
+    bottom: 14px;
+    right: 14px;
+    padding: 11px 16px;
+    font-size: 0.86rem;
+  }
+  .footer {
+    padding: 40px 0 84px;
   }
 }
