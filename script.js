@@ -1,61 +1,124 @@
-// Configuración centralizada de contacto (con el número real de Leo Luter: 3442-537081)
+// ====== CONFIGURACIÓN (completar IDs antes de lanzar los anuncios) ======
 const LL_CONFIG = {
   whatsappNumber: "5493442537081",
-  instagramUrl: "https://www.instagram.com/ll__herreria",
-  founderInstagram: "https://www.instagram.com/leo_luter",
-  coverage: "Concepción del Uruguay, Entre Ríos · Trabajos y envíos a toda la Argentina"
+  metaPixelId: "",   // Ej: "123456789012345" (Meta Events Manager)
+  googleTagId: ""    // Ej: "AW-XXXXXXXXX" (opcional, Google Ads)
 };
 
+// Contenido por oferta: se elige con ?s=agro | empresas | obras
+const PROFILES = {
+  agro: {
+    chip: "Equipos para Agro y Módulos Desmontables",
+    topic: "un módulo rural / gallinero solar desmontable",
+    h1: 'Gallineros y módulos rurales solares <span class="highlight">desmontables</span>, enviados a todo el país.',
+    lead: 'Módulos <strong>100% desmontables por paneles</strong>, con automatización solar y diseño CAD 3D. Los despachamos a cualquier provincia de la Argentina.',
+    cta: "Pedir presupuesto del módulo por WhatsApp"
+  },
+  empresas: {
+    chip: "Estructuras y Producción en Serie para Empresas",
+    topic: "producción en serie o estructuras para mi empresa",
+    h1: 'Producción en serie para empresas: bandejas, columnas reticuladas y estructuras <span class="highlight">con soldador calificado</span>.',
+    lead: 'Fabricamos <strong>lotes completos de bandejas metálicas, columnas reticuladas, racks de depósito y bases estructurales</strong> y los despachamos en camión a todo el país.',
+    cta: "Pedir presupuesto para mi empresa"
+  },
+  obras: {
+    chip: "Galpones, Galerías y Obras",
+    topic: "un galpón, galería, portón u obra a medida",
+    h1: 'Galpones, galerías, portones y obras a medida <span class="highlight">en hierro y acero</span>.',
+    lead: 'Trabajos a medida para tu casa, campo o comercio, con <strong>soldador calificado</strong>. Taller en Concepción del Uruguay, Entre Ríos.',
+    cta: "Pedir presupuesto de mi obra"
+  }
+};
+
+const params = new URLSearchParams(location.search);
+const clean = (v) => (v || "").replace(/[^\w.\-]/g, "").slice(0, 40);
+const profileKey = PROFILES[params.get("s")] ? params.get("s") : "";
+const refTag = [profileKey, clean(params.get("utm_campaign")), clean(params.get("utm_content"))].filter(Boolean).join("/");
+
 function buildWhatsAppUrl(message) {
-  const encoded = encodeURIComponent(message);
-  return `https://wa.me/${LL_CONFIG.whatsappNumber}?text=${encoded}`;
+  const full = refTag ? `${message}\n\n[Ref: ${refTag}]` : message;
+  return `https://wa.me/${LL_CONFIG.whatsappNumber}?text=${encodeURIComponent(full)}`;
 }
 
-function trackLeadEvent(sourceLabel) {
-  if (typeof window.fbq === "function") {
-    window.fbq("track", "Lead", { content_name: sourceLabel });
+// ====== Tracking (Meta Pixel / Google tag), solo si hay IDs ======
+function initTracking() {
+  if (LL_CONFIG.metaPixelId) {
+    (function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
+      t = b.createElement(e); t.async = true; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    window.fbq("init", LL_CONFIG.metaPixelId);
+    window.fbq("track", "PageView");
   }
+  if (LL_CONFIG.googleTagId) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${LL_CONFIG.googleTagId}`;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", LL_CONFIG.googleTagId);
+  }
+}
+
+// "Contact" = clic directo a WhatsApp · "Lead" = envío del cotizador
+function track(metaEvent, label) {
+  if (typeof window.fbq === "function") window.fbq("track", metaEvent, { content_name: label, ref: refTag });
   if (typeof window.gtag === "function") {
-    window.gtag("event", "generate_lead", { event_label: sourceLabel });
+    window.gtag("event", metaEvent === "Lead" ? "generate_lead" : "click_whatsapp", { event_label: label });
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let selectedService = "Estructuras y Trabajos para Empresas / Industria";
+  initTracking();
+  const chips = document.querySelectorAll(".chip-btn");
+  const profile = PROFILES[profileKey];
 
-  // 1. Botones directos de WhatsApp
-  document.querySelectorAll("[data-wa-direct]").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const customTopic = btn.getAttribute("data-wa-direct") || "un proyecto industrial o a medida";
-      const msg = `¡Hola Leo (LL Herrería)! Vi su página web y quería pedir un presupuesto sin cargo por *${customTopic}*.`;
-      trackLeadEvent(`Direct_${customTopic}`);
-      window.open(buildWhatsAppUrl(msg), "_blank", "noopener");
-    });
+  // 0. Contenido según la oferta (?s=...)
+  if (profile) {
+    const h1 = document.getElementById("hero-title");
+    const lead = document.getElementById("hero-lead");
+    const cta = document.getElementById("hero-cta-text");
+    if (h1) h1.innerHTML = profile.h1;
+    if (lead) lead.innerHTML = profile.lead;
+    if (cta) cta.textContent = profile.cta;
+    chips.forEach((c) => c.classList.toggle("active", c.dataset.service === profile.chip));
+    if (profileKey === "agro") { const ag = document.getElementById("agro"), vs = document.getElementById("videos"); if (ag && vs) vs.parentNode.insertBefore(ag, vs); }
+    document.querySelectorAll("[data-wa-direct]").forEach((a) => a.setAttribute("data-wa-direct", profile.topic));
+  }
+  const activeChip = document.querySelector(".chip-btn.active");
+  let selectedService = activeChip ? activeChip.dataset.service : "";
+  chips.forEach((c) => c.setAttribute("aria-pressed", c.classList.contains("active")));
+
+  // 1. Botones directos: links reales a wa.me (funcionan en el navegador de Instagram/Facebook)
+  document.querySelectorAll("[data-wa-direct]").forEach((a) => {
+    const topic = a.getAttribute("data-wa-direct") || "un proyecto industrial o a medida";
+    a.href = buildWhatsAppUrl(`¡Hola Leo (LL Herrería)! Vi su página web y quería pedir un presupuesto sin cargo por *${topic}*.`);
+    a.addEventListener("click", () => track("Contact", `Direct_${topic}`));
   });
 
-  // 2. Filtros interactivos del Portfolio
+  // 2. Filtros del catálogo
   const filterBtns = document.querySelectorAll(".filter-btn");
   const workCards = document.querySelectorAll(".work-card");
-
   filterBtns.forEach((btn) => {
+    btn.setAttribute("aria-pressed", btn.classList.contains("active"));
     btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
+      filterBtns.forEach((b) => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       const filter = btn.getAttribute("data-filter");
-
       workCards.forEach((card) => {
-        const cat = card.getAttribute("data-category");
-        if (filter === "all" || cat === filter) {
-          card.classList.remove("hidden");
-        } else {
-          card.classList.add("hidden");
-        }
+        card.classList.toggle("hidden", !(filter === "all" || card.getAttribute("data-category") === filter));
       });
     });
   });
 
-  // 3. Lightbox para ver fotos en tamaño completo y cotizar ese trabajo puntual
+  // 3. Lightbox (cierra con X, clic afuera o Esc; bloquea el scroll de fondo)
   const lightbox = document.getElementById("work-lightbox");
   const lbImg = document.getElementById("lb-img");
   const lbCat = document.getElementById("lb-cat");
@@ -63,83 +126,74 @@ document.addEventListener("DOMContentLoaded", () => {
   const lbDesc = document.getElementById("lb-desc");
   const lbQuoteBtn = document.getElementById("lb-quote-btn");
   const lbClose = document.getElementById("lb-close");
+  const closeLightbox = () => { lightbox.classList.remove("open"); document.body.style.overflow = ""; };
 
   document.querySelectorAll("[data-lightbox]").forEach((item) => {
     item.addEventListener("click", () => {
-      const img = item.getAttribute("data-img");
       const title = item.getAttribute("data-title");
-      const desc = item.getAttribute("data-desc");
-      const cat = item.getAttribute("data-cat");
-      const service = item.getAttribute("data-service") || title;
-
-      lbImg.src = img;
+      lbImg.src = item.getAttribute("data-img");
       lbImg.alt = title;
-      lbCat.textContent = cat;
+      lbCat.textContent = item.getAttribute("data-cat");
       lbTitle.textContent = title;
-      lbDesc.textContent = desc;
-      lbQuoteBtn.setAttribute("data-select-service", service);
-
+      lbDesc.textContent = item.getAttribute("data-desc");
+      lbQuoteBtn.setAttribute("data-select-service", item.getAttribute("data-service") || title);
       lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
     });
   });
-
   if (lbClose && lightbox) {
-    lbClose.addEventListener("click", () => lightbox.classList.remove("open"));
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) lightbox.classList.remove("open");
-    });
+    lbClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
   }
 
-  // 4. Botones "Cotizar este servicio" que bajan al cotizador y pre-seleccionan el chip
+  // 4. "Cotizar este servicio": baja al cotizador y preselecciona el chip
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-select-service]");
     if (!btn) return;
     e.preventDefault();
-
-    const targetService = btn.getAttribute("data-select-service");
-    selectedService = targetService;
-
-    if (lightbox) lightbox.classList.remove("open");
-
-    document.querySelectorAll(".chip-btn").forEach((chip) => {
-      chip.classList.toggle("active", chip.getAttribute("data-service") === targetService);
+    selectedService = btn.getAttribute("data-select-service");
+    if (lightbox) closeLightbox();
+    chips.forEach((c) => {
+      const on = c.dataset.service === selectedService;
+      c.classList.toggle("active", on);
+      c.setAttribute("aria-pressed", on);
     });
-
-    const quoteSection = document.getElementById("cotizador");
-    if (quoteSection) {
-      quoteSection.scrollIntoView({ behavior: "smooth" });
-    }
+    const q = document.getElementById("cotizador");
+    if (q) q.scrollIntoView({ behavior: "smooth" });
   });
 
-  // 5. Selección de chips en el cotizador
-  document.querySelectorAll(".chip-btn").forEach((chip) => {
+  // 5. Chips del cotizador
+  chips.forEach((chip) => {
     chip.addEventListener("click", () => {
-      document.querySelectorAll(".chip-btn").forEach((c) => c.classList.remove("active"));
+      chips.forEach((c) => { c.classList.remove("active"); c.setAttribute("aria-pressed", "false"); });
       chip.classList.add("active");
-      selectedService = chip.getAttribute("data-service");
+      chip.setAttribute("aria-pressed", "true");
+      selectedService = chip.dataset.service;
     });
   });
 
-  // 6. Envío del formulario cotizador a WhatsApp
+  // 6. Envío del cotizador a WhatsApp
   const form = document.getElementById("wa-quote-form");
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const clientType = document.getElementById("clientType").value;
       const zone = document.getElementById("clientZone").value.trim() || "Argentina";
       const details = document.getElementById("workDetails").value.trim();
-
-      let message = `¡Hola Leo (*LL Herrería*)! Quiero pedir un presupuesto sin cargo:\n\n`;
-      message += `• *Trabajo:* ${selectedService}\n`;
-      message += `• *Destino:* ${clientType}\n`;
-      message += `• *Ciudad / Provincia:* ${zone}\n`;
-      if (details) {
-        message += `• *Medidas / Detalles:* ${details}\n`;
-      }
-      message += `\n¿Podrías asesorarme? ¡Muchas gracias!`;
-
-      trackLeadEvent(`Form_${selectedService}`);
-      window.open(buildWhatsAppUrl(message), "_blank", "noopener");
+      let msg = `¡Hola Leo (*LL Herrería*)! Quiero pedir un presupuesto sin cargo:\n\n`;
+      msg += `• *Trabajo:* ${selectedService}\n• *Ciudad / Provincia:* ${zone}\n`;
+      if (details) msg += `• *Medidas / Detalles:* ${details}\n`;
+      msg += `\nSi hace falta, te paso fotos o planos por acá. ¡Muchas gracias!`;
+      track("Lead", `Form_${selectedService}`);
+      window.location.href = buildWhatsAppUrl(msg);
     });
+  }
+
+  // 7. Videos: solo se reproducen cuando están a la vista (ahorra datos en celular)
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { en.isIntersecting ? en.target.play().catch(() => {}) : en.target.pause(); });
+    }, { threshold: 0.5 });
+    document.querySelectorAll("video").forEach((v) => io.observe(v));
   }
 });

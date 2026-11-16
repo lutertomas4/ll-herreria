@@ -3,27 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LL Herrería | Producción Metalúrgica en Serie, Estructuras Industriales y Obras para Toda la Argentina</title>
+  <title>LL Herrería | Metalúrgica en Concepción del Uruguay · Envíos a todo el país</title>
   <meta name="description" content="LL Herrería de Leo Luter. Soldador calificado. Producción metalúrgica en serie para empresas, estructuras reticuladas, bandejas industriales, innovación para el agro, acero inoxidable y obras a medida. Envíos a toda la Argentina." />
+  <link rel="icon" type="image/jpeg" href="assets/logo-ll.jpg" />
+  <link rel="canonical" href="https://lutertomas4.github.io/ll-herreria/" />
+  <meta name="theme-color" content="#111418" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:title" content="LL Herrería | Producción metalúrgica, agro y obras a medida" />
+  <meta property="og:description" content="Producción en serie, módulos rurales solares desmontables, acero inoxidable y obras a medida. Envíos a toda la Argentina. Presupuesto por WhatsApp." />
+  <meta property="og:image" content="https://lutertomas4.github.io/ll-herreria/assets/camion-bandejas-industriales.jpg" />
+  <meta property="og:url" content="https://lutertomas4.github.io/ll-herreria/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <!-- Barra superior de anuncio con alcance nacional -->
-  <div class="top-bar">
-    <div class="container top-bar-inner">
-      <div class="top-bar-badge">
-        <span class="dot"></span>
-        <span>🇦🇷 <strong>Producción Industrial y Envíos a Toda la Argentina</strong> · Base en Concepción del Uruguay, Entre Ríos</span>
-      </div>
-      <div>
-        <span>👨‍🏭 <strong>Leo Luter · Soldador Calificado</strong> · WhatsApp: <strong>3442-537081</strong></span>
-      </div>
-    </div>
-  </div>
 
   <!-- Navegación principal -->
   <header class="navbar">
@@ -40,6 +36,7 @@
 
       <nav class="nav-links">
         <a href="#videos">Producción en Video</a>
+        <a href="#agro">Módulos Agro</a>
         <a href="#trabajos">Catálogo de Obras (18)</a>
         <a href="#servicios">Empresas y Servicios</a>
         <a href="#nosotros">Soldadura Calificada</a>
@@ -55,9 +52,10 @@
     <!-- Barra de navegación rápida exclusiva para Celulares -->
     <nav class="mobile-quick-nav" aria-label="Navegación móvil rápida">
       <a href="#videos">🎬 Videos</a>
+      <a href="#agro">🐓 Módulos Agro</a>
       <a href="#trabajos">🏭 Catálogo (18)</a>
       <a href="#servicios">⚙️ Servicios</a>
-      <a href="#nosotros">👨‍🏭 Soldador Calificado</a>
+      <a href="#faq">❓ Preguntas</a>
       <a href="#cotizador">📲 Cotizar Ahora</a>
     </nav>
   </header>
@@ -68,14 +66,14 @@
       <div class="hero-content">
         <div class="hero-badges">
           <span class="hero-tag">🇦🇷 Trabajos y Envíos a Toda la Argentina</span>
-          <span class="hero-tag certified">✓ Soldador Calificado Oficial</span>
+          <span class="hero-tag certified">✓ Soldador Calificado</span>
         </div>
 
-        <h1>
+        <h1 id="hero-title">
           Producción Metalúrgica <span class="highlight">Industrial</span>, en Serie y a Medida para Todo el País.
         </h1>
 
-        <p class="hero-lead">
+        <p class="hero-lead" id="hero-lead">
           Fabricamos y despachamos desde lotes completos en camión de <strong>bandejas metálicas, columnas reticuladas, racks de depósito y bases con soldadura calificada para empresas</strong>, hasta <strong>módulos rurales solares desmontables, acero inoxidable, galpones y obras residenciales</strong>.
         </p>
 
@@ -101,7 +99,7 @@
         <div class="hero-cta-group">
           <a href="#cotizador" class="btn btn-whatsapp" data-wa-direct="un proyecto industrial o a medida">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-            <span>Cotizar por WhatsApp Sin Cargo</span>
+            <span id="hero-cta-text">Pedir presupuesto por WhatsApp</span>
           </a>
           <a href="#trabajos" class="btn btn-outline">
             <span>Ver Trabajos Industriales (18) ↓</span>
@@ -142,7 +140,7 @@
         </div>
 
         <div class="showcase-mosaic">
-          <div class="mosaic-card wide" data-lightbox data-img="assets/camion-bandejas-industriales.jpg" data-cat="Producción Industrial en Serie" data-title="Fabricación y Despacho en Camión Completo de Bandejas Metálicas" data-desc="Producción metalúrgica en serie de cientos de bandejas y bastidores estructurales cargados con autoelevador en camión semirremolque para despacho nacional." data-service="Estructuras y Producción en Serie para Empresas">
+          <div class="mosaic-card wide" data-lightbox data-img="assets/camion-bandejas-industriales.jpg" data-cat="Producción Industrial en Serie" data-title="Fabricación y Despacho en Camión Completo de Bandejas Metálicas" data-desc="Producción metalúrgica en serie de lotes de bandejas y bastidores estructurales cargados con autoelevador en camión semirremolque para despacho nacional." data-service="Estructuras y Producción en Serie para Empresas">
             <img src="assets/camion-bandejas-industriales.jpg" alt="Carga de camión semirremolque con bandejas metálicas industriales fabricadas en serie" />
             <div class="mosaic-label">
               <span>Producción en Serie · Carga de Camión Completo</span>
@@ -184,7 +182,7 @@
         <div class="video-card">
           <div class="video-wrap">
             <span class="video-badge">Despacho en Camión</span>
-            <video src="assets/video-camion-bandejas.mp4" poster="assets/camion-bandejas-industriales.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
+            <video src="assets/video-camion-bandejas.mp4" poster="assets/camion-bandejas-industriales.jpg" muted loop playsinline controls preload="metadata"></video>
           </div>
           <div class="video-body">
             <h3>Camión Completo de Bandejas Metálicas</h3>
@@ -195,24 +193,52 @@
         <div class="video-card">
           <div class="video-wrap">
             <span class="video-badge">Producción en Serie</span>
-            <video src="assets/video-columnas-reticuladas.mp4" poster="assets/columnas-reticuladas-serie.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
+            <video src="assets/video-columnas-reticuladas.mp4" poster="assets/columnas-reticuladas-serie.jpg" muted loop playsinline controls preload="metadata"></video>
           </div>
           <div class="video-body">
             <h3>Estructuras y Columnas Reticuladas</h3>
-            <p>Armado y soldadura continua de vigas, cabreadas y columnas reticuladas de alta resistencia para obras e infraestructura.</p>
+            <p>Armado y soldadura continua de vigas, cabreadas y columnas reticuladas para obras e infraestructura.</p>
           </div>
         </div>
 
         <div class="video-card">
           <div class="video-wrap">
             <span class="video-badge">Acero Inoxidable</span>
-            <video src="assets/video-acero-inoxidable.mp4" poster="assets/mesada-batea-inoxidable.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
+            <video src="assets/video-acero-inoxidable.mp4" poster="assets/mesada-batea-inoxidable.jpg" muted loop playsinline controls preload="metadata"></video>
           </div>
           <div class="video-body">
-            <h3>Ingeniería y Plegado en Acero Inoxidable</h3>
-            <p>Fabricación de precisión en acero inoxidable con bisagras ocultas, tapas articuladas y campanas industriales a medida.</p>
+            <h3>Plegado y Soldadura en Acero Inoxidable</h3>
+            <p>Fabricación en acero inoxidable con bisagras ocultas, tapas articuladas y campanas industriales a medida.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Agro: módulos rurales solares desmontables -->
+  <section id="agro" class="agro-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Innovación para el Agro</span>
+        <h2>Módulos rurales solares desmontables</h2>
+        <p>Gallineros y módulos móviles 100% desmontables por paneles, con automatización solar y diseño CAD 3D. Los despachamos a cualquier provincia de la Argentina.</p>
+      </div>
+      <div class="agro-grid">
+        <figure data-lightbox data-img="assets/gallinero-movil.jpg" data-cat="Innovación Agro · Envíos al País" data-title="Gallinero móvil con panel solar" data-desc="Módulo rural móvil y desmontable con automatización solar, fabricado por paneles." data-service="Equipos para Agro y Módulos Desmontables">
+          <img src="assets/gallinero-movil.jpg" alt="Gallinero móvil desmontable con panel solar" loading="lazy" />
+          <figcaption>Gallinero móvil con panel solar</figcaption>
+        </figure>
+        <figure data-lightbox data-img="assets/gallinero-paneles-desmontables.jpg" data-cat="Innovación Agro · Envíos al País" data-title="Paneles modulares para envío" data-desc="Paneles desmontables apilados, listos para despachar a todo el país." data-service="Equipos para Agro y Módulos Desmontables">
+          <img src="assets/gallinero-paneles-desmontables.jpg" alt="Paneles modulares desmontables apilados para envío" loading="lazy" />
+          <figcaption>Paneles modulares para envío</figcaption>
+        </figure>
+        <figure data-lightbox data-img="assets/gallinero-plano-cad.jpg" data-cat="Innovación Agro · Envíos al País" data-title="Diseño en CAD 3D" data-desc="Plano técnico del módulo desarrollado en CAD antes de fabricarlo." data-service="Equipos para Agro y Módulos Desmontables">
+          <img src="assets/gallinero-plano-cad.jpg" alt="Plano CAD del módulo rural desmontable" loading="lazy" />
+          <figcaption>Diseño en CAD 3D</figcaption>
+        </figure>
+      </div>
+      <div class="agro-cta">
+        <a href="#cotizador" class="btn btn-whatsapp" data-select-service="Equipos para Agro y Módulos Desmontables">Cotizar módulo rural →</a>
       </div>
     </div>
   </section>
@@ -229,7 +255,8 @@
       <!-- Pestañas de filtro con Empresas/Industria primero -->
       <div class="filter-tabs">
         <button class="filter-btn active" data-filter="all">Todos los Trabajos (18)</button>
-        <button class="filter-btn" data-filter="industrial">🏭 Empresas, Industria y Agro</button>
+        <button class="filter-btn" data-filter="industrial">🏭 Empresas e Industria</button>
+        <button class="filter-btn" data-filter="agro">🐓 Agro y Módulos Solares</button>
         <button class="filter-btn" data-filter="inoxidable">✨ Acero Inoxidable y Gastronomía</button>
         <button class="filter-btn" data-filter="vehiculos">🚐 Utilitarios, Trailers y 4x4</button>
         <button class="filter-btn" data-filter="hogar">🏠 Galpones, Galerías y Portones</button>
@@ -256,7 +283,7 @@
 
         <!-- 2. Estibas de Bandejas Metálicas en Serie (EMPRESAS #2) -->
         <article class="work-card" data-category="industrial">
-          <div class="work-img-wrap" data-lightbox data-img="assets/estiba-bandejas-serie.jpg" data-cat="Fabricación Seriada" data-title="Estibas de Bastidores y Bandejas Metálicas" data-desc="Precisión milimétrica en cortes, plegados y soldadura repetitiva para pedidos corporativos e industriales de gran volumen." data-service="Estructuras y Producción en Serie para Empresas">
+          <div class="work-img-wrap" data-lightbox data-img="assets/estiba-bandejas-serie.jpg" data-cat="Fabricación Seriada" data-title="Estibas de Bastidores y Bandejas Metálicas" data-desc="Cortes, plegados y soldadura repetitiva para pedidos corporativos e industriales de gran volumen." data-service="Estructuras y Producción en Serie para Empresas">
             <span class="work-category">Grandes Volúmenes</span>
             <span class="work-zoom-hint">⤢</span>
             <img src="assets/estiba-bandejas-serie.jpg" alt="Estiba de bandejas metálicas fabricadas en serie" loading="lazy" />
@@ -274,7 +301,7 @@
 
         <!-- 3. Columnas y Torres Reticuladas en Serie (EMPRESAS #3) -->
         <article class="work-card" data-category="industrial">
-          <div class="work-img-wrap" data-lightbox data-img="assets/columnas-reticuladas-serie.jpg" data-cat="Infraestructura y Obras" data-title="Columnas y Vigas Reticuladas en Serie" data-desc="Lote de columnas reticuladas con bases de anclaje y tratamiento anticorrosivo para obras de infraestructura, iluminación y naves." data-service="Estructuras y Producción en Serie para Empresas">
+          <div class="work-img-wrap" data-lightbox data-img="assets/columnas-reticuladas-serie.jpg" data-cat="Infraestructura y Obras" data-title="Columnas y Vigas Reticuladas en Serie" data-desc="Lote de columnas reticuladas con bases de anclaje para obras de infraestructura, iluminación y naves." data-service="Estructuras y Producción en Serie para Empresas">
             <span class="work-category">Columnas Reticuladas</span>
             <span class="work-zoom-hint">⤢</span>
             <img src="assets/columnas-reticuladas-serie.jpg" alt="Columnas reticuladas fabricadas en serie" loading="lazy" />
@@ -345,7 +372,7 @@
         </article>
 
         <!-- 7. Gallinero / Módulo Móvil Solar (AGRO #1) -->
-        <article class="work-card" data-category="industrial">
+        <article class="work-card" data-category="agro">
           <div class="work-img-wrap" data-lightbox data-img="assets/gallinero-movil.jpg" data-cat="Innovación Agro · Envíos al País" data-title="Gallinero / Módulo Móvil Automatizado con Panel Solar" data-desc="100% desmontable por paneles para envío a toda la Argentina. Puerta automatizada programable por hora, sensor o control remoto alimentada por panel solar y ruedas macizas de 10 pulgadas." data-service="Equipos para Agro y Módulos Desmontables">
             <span class="work-category">Agro · Envíos al País</span>
             <span class="work-zoom-hint">⤢</span>
@@ -363,7 +390,7 @@
         </article>
 
         <!-- 8. Paneles Modulares Desmontables Listos para Envío (AGRO #2) -->
-        <article class="work-card" data-category="industrial">
+        <article class="work-card" data-category="agro">
           <div class="work-img-wrap" data-lightbox data-img="assets/gallinero-paneles-desmontables.jpg" data-cat="Despacho Modular a Todo el País" data-title="Sistema de Paneles Modulares 100% Desmontables" data-desc="Los módulos y cerramientos se entregan desarmados en paneles abulonables de fácil montaje, optimizando el flete hacia cualquier provincia de la Argentina." data-service="Equipos para Agro y Módulos Desmontables">
             <span class="work-category">Sistema Desmontable</span>
             <span class="work-zoom-hint">⤢</span>
@@ -710,10 +737,27 @@
             <span>Dominio de estructuras pesadas, reticulados, chapa plegada y acero inoxidable.</span>
           </div>
           <div class="cred-box">
-            <strong>📐 Ingeniería y Diseño</strong>
+            <strong>📐 Planos y Diseño</strong>
             <span>Fabricación bajo plano técnico o desarrollo integral a medida.</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes (COMPLETAR plazos y formas de pago reales con Leo) -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Antes de escribirnos</span>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>¿Envían a todo el país?</summary><p>Sí. Fabricamos en Concepción del Uruguay, Entre Ríos, y despachamos a cualquier provincia: lotes en camión, expreso o módulos desmontables por paneles. El envío se coordina según el destino.</p></details>
+        <details class="faq-item"><summary>¿Qué necesito para pedir un presupuesto?</summary><p>Contanos qué querés fabricar, la cantidad y tu ciudad. Si tenés medidas, fotos o un plano, mandalos por WhatsApp para que Leo te responda con más precisión.</p></details>
+        <details class="faq-item"><summary>¿Trabajan con planos del cliente?</summary><p>Sí. Fabricamos bajo plano técnico o desarrollamos el trabajo a medida a partir de tu idea o tus medidas.</p></details>
+        <details class="faq-item"><summary>¿Cuánto tarda un trabajo?</summary><p>Depende del tipo de trabajo y la cantidad. Al presupuestar te confirmamos un plazo estimado.</p></details>
+        <details class="faq-item"><summary>¿Cómo se paga?</summary><p>La forma de pago se acuerda al presupuestar, según el trabajo.</p></details>
       </div>
     </div>
   </section>
@@ -765,25 +809,13 @@
             </div>
           </div>
 
-          <div class="form-row form-group">
-            <div>
-              <label for="clientType">2. ¿Para quién es el trabajo?</label>
-              <select id="clientType" class="form-control">
-                <option value="Empresa / Industria / Constructora">Empresa / Industria / Constructora</option>
-                <option value="Productor Agropecuario / Campo">Productor Agropecuario / Campo</option>
-                <option value="Comercio Gastronómico / Local">Comercio Gastronómico / Local</option>
-                <option value="Vehículo / Flota / Utilitario / 4x4">Vehículo / Flota / Utilitario</option>
-                <option value="Hogar / Vivienda particular">Hogar / Vivienda particular</option>
-              </select>
-            </div>
-            <div>
+          <div class="form-group">
               <label for="clientZone">Ciudad y Provincia</label>
               <input type="text" id="clientZone" class="form-control" placeholder="Ej: Buenos Aires, Córdoba, Rosario, Entre Ríos..." />
-            </div>
           </div>
 
           <div class="form-group">
-            <label for="workDetails">3. Cantidad, medidas o detalle del proyecto (opcional)</label>
+            <label for="workDetails">2. Cantidad, medidas o detalle del proyecto (opcional)</label>
             <textarea id="workDetails" class="form-control" placeholder="Contanos qué estructura, lote en serie, equipo agro o trabajo a medida necesitás cotizar..."></textarea>
           </div>
 
@@ -791,7 +823,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
             <span>Enviar Consulta al WhatsApp 3442-537081</span>
           </button>
-          <p class="form-note">🔒 Presupuesto sin cargo · Trabajos y envíos a toda la Argentina.</p>
+          <p class="form-note">📎 Después podés mandar fotos o planos directamente por WhatsApp.</p>
         </form>
       </div>
     </div>
@@ -856,7 +888,7 @@
   <!-- Botón Flotante de WhatsApp -->
   <a href="#cotizador" class="floating-wa" data-wa-direct="un presupuesto sin cargo" aria-label="Consultar por WhatsApp">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-    <span>Presupuesto sin cargo</span>
+    <span>Pedir presupuesto</span>
   </a>
 
   <script src="script.js"></script>
